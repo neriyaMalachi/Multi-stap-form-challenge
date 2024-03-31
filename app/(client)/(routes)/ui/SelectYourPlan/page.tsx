@@ -14,7 +14,7 @@ const page = () => {
             You have the option of monthly or yearly billing.
           </p>
         </div>
-        <div className="inputs flex flex-col justify-evenly items-center h-[60%]">
+        <div className="typesSelecte flex flex-col justify-between items-center h-[60%]">
           <div className="flex items-center w-[85%] p-3 rounded-md border border-slate-400  hover:border-blue-600">
             <div>
               <Image src={Arcadeicon} alt="icon" />
@@ -42,6 +42,31 @@ const page = () => {
               <p>$15/mo</p>
             </div>
           </div>
+        <label className="w-[65%] mt-4 inline-flex items-center justify-around cursor-pointer">
+          <p>Monthly</p>
+          <input type="checkbox" value="" className="sr-only peer" />
+          <div
+            className="relative
+           w-10 h-5 bg-gray-200 
+           peer-focus:outline-none 
+           peer-focus:ring-4 
+           rounded-full peer 
+           dark:bg-blue-500 
+           peer-checked:after:translate-x-full 
+           rtl:peer-checked:after:-translate-x-full 
+           peer-checked:after:border-white 
+           after:content-[''] 
+           after:absolute after:top-[2px] 
+           after:start-[4px] 
+           after:bg-white 
+           after:rounded-full 
+           after:h-4 
+           after:w-4 
+           after:transition-all 
+           "
+          ></div>
+          <p>yearly</p>
+        </label>
         </div>
       </div>
     </div>
