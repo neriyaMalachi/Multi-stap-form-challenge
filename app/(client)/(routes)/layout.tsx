@@ -16,11 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NavBar />
         <QueryClientProvider client={queryClient}>
+        <NavBar />
           {children}
+        <Footer />
         </QueryClientProvider>
-        {window.location.pathname === "/ui/ThankYouFile" ? <></> : <Footer />}
       </body>
     </html>
   );

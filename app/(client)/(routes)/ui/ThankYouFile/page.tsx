@@ -3,7 +3,7 @@ import iconThanks from '@/assets/images/icon-thank-you.svg'
 import Image from 'next/image'
 const page = () => {
   return (
-    <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 ">
+    <div className="body flex justify-center bg-slate-200 h-[79vh] -mt-6 ">
     <div className="card bg-white w-[90%] h-[420px] rounded-xl -mt-[19%] ">
       <div className="h-[100%]  flex flex-col p-6 justify-evenly items-center text-center">
         <Image src={iconThanks} alt='thanks icon' width={60} />
