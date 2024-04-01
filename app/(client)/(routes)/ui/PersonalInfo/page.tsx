@@ -5,11 +5,6 @@ import { userStore } from "@/context/store";
 const page = () => {
   const user = userStore((state: any) => state.user);
   const UpdateName = userStore((state: any) => state.updateName);
-  const UpdateEmailAddress = userStore(
-    (state: any) => state.UpdateEmailAddress
-  );
-  const UpdatePhoneNumber = userStore((state: any) => state.UpdatePhoneNumber);
-  console.log(user);
 
   return (
     <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 ">

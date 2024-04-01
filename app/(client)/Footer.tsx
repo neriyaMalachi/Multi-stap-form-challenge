@@ -29,8 +29,6 @@ const Footer = () => {
   const BackFile = () => {
     if (host === "/ui/SelectYourPlan") router.push("/ui/PersonalInfo");
     else if (host === "/ui/PickAddOns") router.push("/ui/SelectYourPlan");
-    console.log("dasds");
-    
   };
    const back =useQuery({ queryKey: ["Back"], queryFn: BackFile });
    
