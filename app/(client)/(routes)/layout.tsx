@@ -4,7 +4,7 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NavBar from "@/app/(client)/NavBar";
 import Footer from "@/app/(client)/Footer";
-import '@/globals.css'
+import "@/globals.css";
 
 export default function RootLayout({
   children,
@@ -20,7 +20,7 @@ export default function RootLayout({
         <QueryClientProvider client={queryClient}>
           {children}
         </QueryClientProvider>
-        <Footer />
+        {window.location.pathname === "/ui/ThankYouFile" ? <></> : <Footer />}
       </body>
     </html>
   );
