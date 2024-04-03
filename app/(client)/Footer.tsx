@@ -19,9 +19,11 @@ const Footer = () => {
     if (host === "/ui/PersonalInfo" && user && emailAddress && phoneNumber)
       router.push("/ui/SelectYourPlan");
     else if (
+      
       host === "/ui/SelectYourPlan" && (month || yeare) && subscriptionType
-    )
-      router.push("/ui/PickAddOns");
+      ){
+      console.log(user)
+      router.push("/ui/PickAddOns")}
     else if (host === "/ui/PickAddOns") router.push("/ui/FinishingUp");
     else if (host === "/ui/FinishingUp") router.push("/ui/ThankYouFile");
   };
@@ -30,9 +32,8 @@ const Footer = () => {
     if (host === "/ui/SelectYourPlan") router.push("/ui/PersonalInfo");
     else if (host === "/ui/PickAddOns") router.push("/ui/SelectYourPlan");
   };
-   const back =useQuery({ queryKey: ["Back"], queryFn: BackFile });
    
-  const { status, refetch, data } = useQuery({
+  const {refetch,} = useQuery({
     queryKey: ["Next"],
     queryFn: NextFile,
   });
