@@ -1,4 +1,5 @@
 "use client";
+import { userStore } from "@/context/store";
 import React, { useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
 const page = () => {
@@ -9,6 +10,7 @@ const page = () => {
     selected: boolean;
     id: number;
   };
+  const user = userStore((state:any)=> state.user);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [typeGaming, setTypeGaming] = useState<TG[]>([
     {
@@ -33,6 +35,8 @@ const page = () => {
       id: 3,
     },
   ]);
+  console.log(user);
+  
   return (
     <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 ">
       <div className="card bg-white w-[90%] h-[380px] rounded-xl -mt-[19%]">

@@ -7,38 +7,31 @@ import { usePathname } from "next/navigation";
 const Footer = () => {
   const router = useRouter();
   const user = userStore((state: any) => state.user);
-  const emailAddress = userStore((state: any) => state.emailAddress);
-  const phoneNumber = userStore((state: any) => state.phoneNumber);
-  const month = userStore((state: any) => state.month);
-  const yeare = userStore((state: any) => state.yeare);
-  const subscriptionType = userStore((state: any) => state.subscriptionType);
-
   const host = usePathname();
 
   const NextFile = () => {
-    if (host === "/ui/PersonalInfo" && user && emailAddress && phoneNumber)
+    if (
+      host === "/ui/PersonalInfo" &&
+      user.name &&
+      user.emailAddress &&
+      user.phoneNumber
+    )
       router.push("/ui/SelectYourPlan");
-    else if (
-      
-      host === "/ui/SelectYourPlan" && (month || yeare) && subscriptionType
-      ){
-      console.log(user)
-      router.push("/ui/PickAddOns")}
+    else if (host === "/ui/SelectYourPlan" && user.subscriptionType)
+      router.push("/ui/PickAddOns");
     else if (host === "/ui/PickAddOns") router.push("/ui/FinishingUp");
     else if (host === "/ui/FinishingUp") router.push("/ui/ThankYouFile");
-  };
 
+    return 1;
+  };
   const BackFile = () => {
     if (host === "/ui/SelectYourPlan") router.push("/ui/PersonalInfo");
     else if (host === "/ui/PickAddOns") router.push("/ui/SelectYourPlan");
   };
-   
-  const {refetch,} = useQuery({
+  const { refetch } = useQuery({
     queryKey: ["Next"],
     queryFn: NextFile,
   });
-  
-  
 
   return (
     <div>

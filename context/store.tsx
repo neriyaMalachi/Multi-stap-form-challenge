@@ -12,11 +12,10 @@ export const userStore = create((set) => ({
     largerStorage: false,
     CustomizableProfile: false,
   },
-  updateName: (newUser: any) => set((state: any)=>({
-    user: {...state.user,...newUser},
-    emailAddress: {...state.user,...newUser},
-    phoneNumber: {...state.user,...newUser}
-
-
-  })),
+  updateName: (newUser: any) =>
+    set((state: any) => ({
+      user: { ...state.user, ...newUser },
+      emailAddress: { ...state.user, ...newUser },
+      phoneNumber: { ...state.user, ...newUser },
+    })),
 }));

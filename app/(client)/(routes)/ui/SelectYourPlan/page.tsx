@@ -23,7 +23,7 @@ const page = () => {
           <div
             onClick={() => {
               UpdateUser({
-                subscription: "Arcade",
+                subscriptionType: "Arcade",
               });
             }}
             className="flex items-center w-[85%] p-3 rounded-md border border-slate-400  hover:border-blue-600"
@@ -40,7 +40,7 @@ const page = () => {
           <div
             onClick={() => {
               UpdateUser({
-                subscription: "Advenced",
+                subscriptionType: "Advenced",
               });
             }}
             className="flex items-center w-[85%] p-3 rounded-md border border-slate-400  hover:border-blue-600"
@@ -57,7 +57,7 @@ const page = () => {
           <div
             onClick={() => {
               UpdateUser({
-                subscription: "Pro",
+                subscriptionType: "Pro",
               });
             }}
             className="flex items-center w-[85%] p-3 rounded-md border border-slate-400  hover:border-blue-600"
@@ -75,13 +75,12 @@ const page = () => {
             <p>Monthly</p>
             <input
               onClick={() => {
-                if (user.month === true){
-
+                if (user.month === true) {
                   UpdateUser({
                     month: false,
                     yeare: true,
                   });
-                }else{
+                } else {
                   UpdateUser({
                     month: true,
                     yeare: false,
