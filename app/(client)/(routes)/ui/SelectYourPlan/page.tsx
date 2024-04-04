@@ -1,78 +1,93 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Arcadeicon from "@/assets/images/icon-arcade.svg";
 import Advancedicon from "@/assets/images/icon-advanced.svg";
 import Proicon from "@/assets/images/icon-pro.svg";
 import { userStore } from "@/context/store";
-const page = () => {
+const Page = () => {
   const UpdateUser = userStore((user: any) => user.updateName);
   const user = userStore((user: any) => user.user);
+  type TP = {
+    title: String;
+    icon: any;
+    priceMonth: Number;
+    priceYeare: Number;
+  };
+  const [Plans, setPlans] = useState<TP[]>([
+    {
+      title: "Arcade",
+      icon: Arcadeicon,
+      priceMonth: 9,
+      priceYeare: 90,
+    },
+    {
+      title: "Advenced",
+      icon: Advancedicon,
+      priceMonth: 12,
+      priceYeare: 120,
+    },
+    {
+      title: "pro",
+      icon: Proicon,
+      priceMonth: 15,
+      priceYeare: 150,
+    },
+  ]);
 
   return (
     <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 ">
-      <div className="card bg-white w-[90%] h-[470px] rounded-xl -mt-[19%]">
-        <div className="h-[30%]  flex flex-col p-6">
+      <div className="card bg-white w-[90%] h-[620px] rounded-xl -mt-[19%] ">
+        <div className="h-[20%]  flex flex-col p-6">
           <h1 className="font-Ubuntu-Bold text-2xl">Select your plan</h1>
           <p className="mt-4 text-slate-400">
             You have the option of monthly or yearly billing.
           </p>
         </div>
-        <div className="typesSelecte flex flex-col justify-between items-center h-[60%]">
-          {/* Arcade */}
-          <div
-            onClick={() => {
-              UpdateUser({
-                subscriptionType: "Arcade",
-              });
-            }}
-            className="flex items-center w-[85%] p-3 rounded-md border border-slate-400  hover:border-blue-600"
-          >
-            <div>
-              <Image src={Arcadeicon} alt="icon" />
-            </div>
-            <div className="flex flex-col ml-3">
-              <h1 className="font-Ubuntu-Bold">Arcade</h1>
-              <p>$9/mo</p>
-            </div>
-          </div>
-          {/* Advanced */}
-          <div
-            onClick={() => {
-              UpdateUser({
-                subscriptionType: "Advenced",
-              });
-            }}
-            className="flex items-center w-[85%] p-3 rounded-md border border-slate-400  hover:border-blue-600"
-          >
-            <div>
-              <Image src={Advancedicon} alt="icon" />
-            </div>
-            <div className="flex flex-col ml-3">
-              <h1 className="font-Ubuntu-Bold">Advanced</h1>
-              <p>$12/mo</p>
-            </div>
-          </div>
-          {/* Pro */}
-          <div
-            onClick={() => {
-              UpdateUser({
-                subscriptionType: "Pro",
-              });
-            }}
-            className="flex items-center w-[85%] p-3 rounded-md border border-slate-400  hover:border-blue-600"
-          >
-            <div>
-              <Image src={Proicon} alt="icon" />
-            </div>
-            <div className="flex flex-col ml-3">
-              <h1 className="font-Ubuntu-Bold">Pro</h1>
-              <p>$15/mo</p>
-            </div>
-          </div>
+        <div className="typesSelecte flex flex-col justify-evenly items-center   h-[60%]">
+          {Plans.map((plan, index) => {
+            return (
+              <div
+                key={index}
+                onClick={() => {
+                  if (user.month) {
+                    UpdateUser({
+                      subscriptionType: plan.title,
+                      Price: plan.priceMonth,
+                    });
+                  } else {
+                    UpdateUser({
+                      subscriptionType: plan.title,
+                      Price: plan.priceYeare,
+                    });
+                  }
+                }}
+                className={`flex items-center w-[85%] h-[29%] p-2 rounded-lg border border-slate-400  hover:border-blue-600 hover:bg-blue-50`}
+              >
+                <div className="h-16 ">
+                  <Image src={plan.icon} alt="icon" />
+                </div>
+                <div className="flex flex-col ml-3 h-16">
+                  <h1 className="font-Ubuntu-Bold">{plan.title}</h1>
+                  {user.month ? (
+                    <p>${plan.priceMonth.toString()}/mo</p>
+                  ) : (
+                    <p>${plan.priceYeare.toString()}/yr</p>
+                  )}
+                  {user.yeare ? (
+                    <p className="text-xs">2 months free</p>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
+            );
+          })}
           {/* nonth or year */}
-          <label className="w-[65%] mt-4 inline-flex items-center justify-around cursor-pointer">
-            <p>Monthly</p>
+        </div>
+        <div className="flex flex-col items-center ">
+          <label className="w-[85%] p-3 rounded-lg mt-4 inline-flex items-center justify-around cursor-pointer bg-slate-100 ">
+            <p className={`${user.month ? "font-bold" : ""}`}>Monthly</p>
             <input
               onClick={() => {
                 if (user.month === true) {
@@ -110,7 +125,7 @@ const page = () => {
            after:transition-all 
            "
             ></div>
-            <p>yearly</p>
+            <p className={`${user.month ? "" : "font-bold"}`}>yearly</p>
           </label>
         </div>
       </div>
@@ -118,4 +133,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -11,6 +11,7 @@ export const userStore = create((set) => ({
     OnlineService: false,
     largerStorage: false,
     CustomizableProfile: false,
+    Price: 0,
   },
   updateName: (newUser: any) =>
     set((state: any) => ({

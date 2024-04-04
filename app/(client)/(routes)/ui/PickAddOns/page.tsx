@@ -2,41 +2,44 @@
 import { userStore } from "@/context/store";
 import React, { useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
-const page = () => {
+const Page = () => {
   type TG = {
     title: string;
     description: string;
-    price: string;
+    priceMonth: Number;
+    priceyeare: Number;
     selected: boolean;
     id: number;
   };
-  const user = userStore((state:any)=> state.user);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const user = userStore((state: any) => state.user);
   const [typeGaming, setTypeGaming] = useState<TG[]>([
     {
       title: "Online service",
       description: " Access to multiplayer games",
-      price: "1",
+      priceMonth: 1,
+      priceyeare: 10,
       selected: false,
       id: 1,
     },
     {
       title: "larger storage",
       description: " Extra 1TB of cloud save",
-      price: "2",
+      priceMonth: 2,
+      priceyeare: 20,
       selected: false,
       id: 2,
     },
     {
       title: "Customizable profile",
       description: "Custom theme on your profile",
-      price: "2",
+      priceMonth: 2,
+      priceyeare: 20,
       selected: false,
       id: 3,
     },
   ]);
   console.log(user);
-  
+
   return (
     <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 ">
       <div className="card bg-white w-[90%] h-[380px] rounded-xl -mt-[19%]">
@@ -67,6 +70,7 @@ const page = () => {
                             : select
                         )
                       );
+                      
                 }}
                 className={`${
                   item.selected
@@ -91,7 +95,10 @@ const page = () => {
                     <p className="text-xs text-slate-400">{item.description}</p>
                   </div>
                   <div className="">
-                    <p className="text-sm">+${item.price}/mo</p>
+                    <p className="text-sm">
+                      +${user.yeare ? item.priceyeare.toString() : item.priceMonth.toString()}/
+                      {user.yeare ? 'yr' : 'mo'}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -103,4 +110,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
