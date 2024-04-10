@@ -12,6 +12,8 @@ const Page = () => {
     id: number;
   };
   const user = userStore((state: any) => state.user);
+  const UpdateUser = userStore((user: any) => user.updateName);
+
   const [typeGaming, setTypeGaming] = useState<TG[]>([
     {
       title: "Online service",
@@ -38,7 +40,7 @@ const Page = () => {
       id: 3,
     },
   ]);
-  console.log(user);
+  console.log(user.Price);
 
   return (
     <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 ">
@@ -70,15 +72,67 @@ const Page = () => {
                             : select
                         )
                       );
-                      
+
+                  switch (item.title) {
+                    case "Online service": {
+                      !user.OnlineService
+                        ? (UpdateUser({
+                            OnlineService: true,
+                          }),
+                          user.month
+                            ? UpdateUser({
+                                Price: item.priceMonth + user.Price,
+                              })
+                            : UpdateUser({
+                                Price: item.priceyeare + user.Price,
+                              }))
+                        : (UpdateUser({
+                            OnlineService: false,
+                          }),
+                          user.month
+                            ? UpdateUser({
+                                Price: -item.priceMonth ,
+                              })
+                            : UpdateUser({
+                                Price: -item.priceyeare ,
+                              }));
+                      return;
+                    }
+                    case "larger storage": {
+                      console.log(item.title);
+
+                      !user.largerStorage
+                        ? UpdateUser({
+                            largerStorage: true,
+                          })
+                        : UpdateUser({
+                            largerStorage: false,
+                          });
+                      return;
+                    }
+                    case "Customizable profile": {
+                      console.log(item.title);
+
+                      !user.CustomizableProfile
+                        ? UpdateUser({
+                            CustomizableProfile: true,
+                          })
+                        : UpdateUser({
+                            CustomizableProfile: false,
+                          });
+                      return;
+                    }
+                    default:
+                      console.log("Error in pickAddOns !!!");
+                  }
                 }}
                 className={`${
                   item.selected
-                    ? "border border-blue-600"
+                    ? "border border-blue-600 bg-blue-50"
                     : "border border-slate-400"
-                }flex items-center w-[93%] p-3 rounded-md `}
+                }  flex items-center w-[93%] p-3 rounded-md  `}
               >
-                <div className="flex justify-between  w-full items-center">
+                <div className="flex  justify-between  w-full items-center">
                   <div className="flex items-center ">
                     <button
                       className={`${
@@ -96,8 +150,11 @@ const Page = () => {
                   </div>
                   <div className="">
                     <p className="text-sm">
-                      +${user.yeare ? item.priceyeare.toString() : item.priceMonth.toString()}/
-                      {user.yeare ? 'yr' : 'mo'}
+                      +$
+                      {user.yeare
+                        ? item.priceyeare.toString()
+                        : item.priceMonth.toString()}
+                      /{user.yeare ? "yr" : "mo"}
                     </p>
                   </div>
                 </div>

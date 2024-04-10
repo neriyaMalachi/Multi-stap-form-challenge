@@ -49,14 +49,14 @@ const Page = () => {
             return (
               <div
                 key={index}
-                onClick={() => {
+                onClick={async () => {
                   if (user.month) {
-                    UpdateUser({
+                    await UpdateUser({
                       subscriptionType: plan.title,
                       Price: plan.priceMonth,
                     });
                   } else {
-                    UpdateUser({
+                  await  UpdateUser({
                       subscriptionType: plan.title,
                       Price: plan.priceYeare,
                     });
@@ -94,11 +94,15 @@ const Page = () => {
                   UpdateUser({
                     month: false,
                     yeare: true,
+                    subscriptionType:"",
+                    Price:0,
                   });
                 } else {
                   UpdateUser({
                     month: true,
                     yeare: false,
+                    subscriptionType:"",
+                    Price:0,
                   });
                 }
               }}

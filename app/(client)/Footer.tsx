@@ -19,8 +19,11 @@ const Footer = () => {
       router.push("/ui/SelectYourPlan");
     else if (host === "/ui/SelectYourPlan" && user.subscriptionType)
       router.push("/ui/PickAddOns");
-    else if (host === "/ui/PickAddOns") router.push("/ui/FinishingUp");
-    else if (host === "/ui/FinishingUp") router.push("/ui/ThankYouFile");
+    else if (host === "/ui/PickAddOns" && (user.OnlineService || user.largerStorage || user.CustomizableProfile)){
+
+     router.push("/ui/FinishingUp");
+    }
+     else if (host === "/ui/FinishingUp") router.push("/ui/ThankYouFile");
 
     return 1;
   };
