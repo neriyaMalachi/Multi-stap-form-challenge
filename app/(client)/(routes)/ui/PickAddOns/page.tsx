@@ -40,7 +40,7 @@ const Page = () => {
       id: 3,
     },
   ]);
-  console.log(user.Price);
+  console.log(user);
 
   return (
     <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 ">
@@ -91,35 +91,59 @@ const Page = () => {
                           }),
                           user.month
                             ? UpdateUser({
-                                Price: -item.priceMonth ,
+                                Price: user.Price - item.priceMonth.valueOf(),
                               })
                             : UpdateUser({
-                                Price: -item.priceyeare ,
+                                Price: user.Price - item.priceyeare.valueOf(),
                               }));
                       return;
                     }
                     case "larger storage": {
-                      console.log(item.title);
-
                       !user.largerStorage
-                        ? UpdateUser({
+                        ? (UpdateUser({
                             largerStorage: true,
-                          })
+                          }),
+                          user.month
+                            ? UpdateUser({
+                                Price: item.priceMonth + user.Price,
+                              })
+                            : UpdateUser({
+                                Price: item.priceyeare + user.Price,
+                              }))
                         : UpdateUser({
                             largerStorage: false,
-                          });
+                          }),
+                        user.month
+                          ? UpdateUser({
+                              Price: user.Price - item.priceMonth.valueOf(),
+                            })
+                          : UpdateUser({
+                              Price: user.Price - item.priceyeare.valueOf(),
+                            });
                       return;
                     }
                     case "Customizable profile": {
-                      console.log(item.title);
-
                       !user.CustomizableProfile
-                        ? UpdateUser({
+                        ? (UpdateUser({
                             CustomizableProfile: true,
-                          })
+                          }),
+                          user.month
+                            ? UpdateUser({
+                                Price: item.priceMonth + user.Price,
+                              })
+                            : UpdateUser({
+                                Price: item.priceyeare + user.Price,
+                              }))
                         : UpdateUser({
                             CustomizableProfile: false,
-                          });
+                          }),
+                        user.month
+                          ? UpdateUser({
+                              Price: user.Price - item.priceMonth.valueOf(),
+                            })
+                          : UpdateUser({
+                              Price: user.Price - item.priceyeare.valueOf(),
+                            });
                       return;
                     }
                     default:
