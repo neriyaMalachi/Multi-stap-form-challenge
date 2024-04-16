@@ -40,7 +40,34 @@ const Page = () => {
       id: 3,
     },
   ]);
-  console.log(user);
+
+  const choiceServise = (item:any) => {
+
+    !user.OnlineService
+    ? (UpdateUser({
+        OnlineService: true,
+      }),
+      user.month
+        ? UpdateUser({
+            Price: item.priceMonth + user.Price,
+          })
+        : UpdateUser({
+            Price: item.priceyeare + user.Price,
+          }))
+    : (UpdateUser({
+        OnlineService: false,
+      }),
+      user.month
+        ? UpdateUser({
+            Price: user.Price - item.priceMonth.valueOf(),
+          })
+        : UpdateUser({
+            Price: user.Price - item.priceyeare.valueOf(),
+          }));
+
+
+  };
+
 
   return (
     <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 ">
@@ -74,78 +101,9 @@ const Page = () => {
                       );
 
                   switch (item.title) {
-                    case "Online service": {
-                      !user.OnlineService
-                        ? (UpdateUser({
-                            OnlineService: true,
-                          }),
-                          user.month
-                            ? UpdateUser({
-                                Price: item.priceMonth + user.Price,
-                              })
-                            : UpdateUser({
-                                Price: item.priceyeare + user.Price,
-                              }))
-                        : (UpdateUser({
-                            OnlineService: false,
-                          }),
-                          user.month
-                            ? UpdateUser({
-                                Price: user.Price - item.priceMonth.valueOf(),
-                              })
-                            : UpdateUser({
-                                Price: user.Price - item.priceyeare.valueOf(),
-                              }));
-                      return;
-                    }
-                    case "larger storage": {
-                      !user.largerStorage
-                        ? (UpdateUser({
-                            largerStorage: true,
-                          }),
-                          user.month
-                            ? UpdateUser({
-                                Price: item.priceMonth + user.Price,
-                              })
-                            : UpdateUser({
-                                Price: item.priceyeare + user.Price,
-                              }))
-                        : UpdateUser({
-                            largerStorage: false,
-                          }),
-                        user.month
-                          ? UpdateUser({
-                              Price: user.Price - item.priceMonth.valueOf(),
-                            })
-                          : UpdateUser({
-                              Price: user.Price - item.priceyeare.valueOf(),
-                            });
-                      return;
-                    }
-                    case "Customizable profile": {
-                      !user.CustomizableProfile
-                        ? (UpdateUser({
-                            CustomizableProfile: true,
-                          }),
-                          user.month
-                            ? UpdateUser({
-                                Price: item.priceMonth + user.Price,
-                              })
-                            : UpdateUser({
-                                Price: item.priceyeare + user.Price,
-                              }))
-                        : UpdateUser({
-                            CustomizableProfile: false,
-                          }),
-                        user.month
-                          ? UpdateUser({
-                              Price: user.Price - item.priceMonth.valueOf(),
-                            })
-                          : UpdateUser({
-                              Price: user.Price - item.priceyeare.valueOf(),
-                            });
-                      return;
-                    }
+                    case "Online service": {choiceServise(item)}
+                    case "larger storage": {choiceServise(item)}
+                    case "Customizable profile": {choiceServise(item)}
                     default:
                       console.log("Error in pickAddOns !!!");
                   }

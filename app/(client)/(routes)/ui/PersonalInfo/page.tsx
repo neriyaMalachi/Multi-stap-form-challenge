@@ -34,7 +34,7 @@ const page = () => {
             <p>Email Address</p>
             <input
               value={user.emailAddress}
-              type="text"
+              type="email"
               placeholder="e.g Stefhanking@lorem.com"
               className="border border-zinc-500 p-2 rounded-md w-[300px]"
               onChange={(e: any) => {
