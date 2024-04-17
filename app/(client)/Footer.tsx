@@ -43,7 +43,7 @@ const Footer = () => {
       ) : (
         <div
           className={
-            "futer flex justify-between items-center h-24  p-4 w-[100%]"
+            "futer flex justify-between items-center h-24  p-4 w-[100%] md:w-[870px] md:-mt-24 md:justify-around md:items-start md:ml-24"
           }
         >
           <p
@@ -58,7 +58,7 @@ const Footer = () => {
             onClick={() => {
               refetch();
             }}
-            className="button text-white p-3 rounded-md font-Ubuntu-Bold  "
+            className="button text-white p-3 rounded-md font-Ubuntu-Bold md:pl-6 md:pr-6 "
           >
             {host === "/ui/FinishingUp" ? <p>Confirm</p> : <p>Next Step</p>}
           </button>

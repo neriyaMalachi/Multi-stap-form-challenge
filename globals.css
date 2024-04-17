@@ -2,25 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
-    font-family: 'Ubuntu-Bold';
-    src: url('./assets/fonts/Ubuntu-Bold.ttf') format('truetype');
+  font-family: "Ubuntu-Bold";
+  src: url("./assets/fonts/Ubuntu-Bold.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Ubuntu-Medium';
-    src: url('./assets/fonts/Ubuntu-Medium.ttf') format('truetype');
+  font-family: "Ubuntu-Medium";
+  src: url("./assets/fonts/Ubuntu-Medium.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Ubuntu-Regular';
-    src: url('./assets/fonts/Ubuntu-Regular.ttf') format('truetype');
+  font-family: "Ubuntu-Regular";
+  src: url("./assets/fonts/Ubuntu-Regular.ttf") format("truetype");
 }
-.navigation{
-
-    background-image: url(./assets/images/bg-sidebar-mobile.svg);
+.navigation {
+  background-image: url(./assets/images/bg-sidebar-mobile.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.button {
+  background-color: hsl(243, 100%, 62%);
+}
+@media screen and (min-width: 1200px) {
+  .navigation {
+    background-image: url(./assets/images/bg-sidebar-desktop.svg);
     background-repeat: no-repeat;
-    background-size: 100%;
-}
-.button{
-    background-color:  hsl(243, 100%, 62%)
+    background-size: 100% 100%;
+  }
 }

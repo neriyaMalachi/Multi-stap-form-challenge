@@ -36,15 +36,17 @@ const Page = () => {
   ]);
 
   return (
-    <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 ">
-      <div className="card bg-white w-[90%] h-[620px] rounded-xl -mt-[19%] ">
-        <div className="h-[20%]  flex flex-col p-6">
+    <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 md:bg-white 
+    md:mt-0 md:w-[120%] md:h-[95vh] md:items-start ">
+      <div className="card w-[90%] h-[620px] rounded-xl -mt-[19%]
+      md:mt-0 md:w-[60%]   ">
+        <div className="h-[20%]  flex flex-col p-9 ">
           <h1 className="font-Ubuntu-Bold text-2xl">Select your plan</h1>
           <p className="mt-4 text-slate-400">
             You have the option of monthly or yearly billing.
           </p>
         </div>
-        <div className="typesSelecte flex flex-col justify-evenly items-center   h-[60%]">
+        <div className="typesSelecte flex flex-col justify-evenly items-center h-[60%] md:flex-row md:h-[40%] md:w-[95%] ">
           {Plans.map((plan, index) => {
             return (
               <div
@@ -62,7 +64,7 @@ const Page = () => {
                     });
                   }
                 }}
-                className={`flex items-center w-[85%] h-[29%] p-2 rounded-lg border border-slate-400  hover:border-blue-600 hover:bg-blue-50`}
+                className={`flex items-center w-[85%] h-[29%] md:w-[25%] md:h-[80%] md:flex-col md:items-start md:justify-between  p-2 rounded-lg border border-slate-400  hover:border-blue-600 hover:bg-blue-50`}
               >
                 <div className="h-16 ">
                   <Image src={plan.icon} alt="icon" />
@@ -85,8 +87,8 @@ const Page = () => {
           })}
           {/* nonth or year */}
         </div>
-        <div className="flex flex-col items-center ">
-          <label className="w-[85%] p-3 rounded-lg mt-4 inline-flex items-center justify-around cursor-pointer bg-slate-100 ">
+        <div className="flex flex-col items-center md:items-start md:ml-6 ">
+          <label className="w-[85%] md:w-[90%] p-3 rounded-lg mt-4 inline-flex items-center justify-around cursor-pointer bg-slate-100 ">
             <p className={`${user.month ? "font-bold" : ""}`}>Monthly</p>
             <input
               onClick={() => {

@@ -70,8 +70,8 @@ const Page = () => {
 
 
   return (
-    <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 ">
-      <div className="card bg-white w-[90%] h-[380px] rounded-xl -mt-[19%]">
+    <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 md:bg-white ">
+      <div className="card bg-white w-[90%] h-[380px] rounded-xl -mt-[19%] md:mt-0 md:w-[60%]">
         <div className="h-[30%]  flex flex-col p-6">
           <h1 className="font-Ubuntu-Bold text-2xl">Pick add-ons</h1>
           <p className="mt-4 text-slate-400">

@@ -15,11 +15,13 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className="flex items-center">
         <QueryClientProvider client={queryClient}>
         <NavBar />
+        <div>
           {children}
         <Footer />
+        </div>
         </QueryClientProvider>
       </body>
     </html>
