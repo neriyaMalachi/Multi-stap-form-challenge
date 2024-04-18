@@ -70,15 +70,14 @@ const Page = () => {
 
 
   return (
-    <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 md:bg-white ">
-      <div className="card bg-white w-[90%] h-[380px] rounded-xl -mt-[19%] md:mt-0 md:w-[60%]">
-        <div className="h-[30%]  flex flex-col p-6">
+    <>
+    <div className="h-[30%]  flex flex-col p-6 md:p-3 ">
           <h1 className="font-Ubuntu-Bold text-2xl">Pick add-ons</h1>
           <p className="mt-4 text-slate-400">
             Add ons help enhance your gaming experience.
           </p>
         </div>
-        <div className="typesSelecte flex flex-col justify-evenly mt-4 items-center h-[65%]">
+        <div className="typesSelecte flex flex-col justify-evenly mt-4 items-center h-[55%] md:h-[70%] md:m-0  ">
           {typeGaming.map((item, index) => {
             return (
               <div
@@ -112,7 +111,7 @@ const Page = () => {
                   item.selected
                     ? "border border-blue-600 bg-blue-50"
                     : "border border-slate-400"
-                }  flex items-center w-[93%] p-3 rounded-md  `}
+                }  flex items-center w-[93%] p-3 rounded-md md:h-[35%] md:mt-4 md:w-[100%] `}
               >
                 <div className="flex  justify-between  w-full items-center">
                   <div className="flex items-center ">
@@ -144,8 +143,7 @@ const Page = () => {
             );
           })}
         </div>
-      </div>
-    </div>
+        </>
   );
 };
 

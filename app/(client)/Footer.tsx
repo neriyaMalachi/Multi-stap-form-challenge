@@ -23,7 +23,8 @@ const Footer = () => {
 
      router.push("/ui/FinishingUp");
     }
-     else if (host === "/ui/FinishingUp") router.push("/ui/ThankYouFile");
+     else if (host === "/ui/FinishingUp") 
+      router.push("/ui/ThankYouFile");
 
     return 1;
   };
@@ -38,13 +39,12 @@ const Footer = () => {
 
   return (
     <div>
-      {host === "ui/ThankYouFile" ? (
+      {host === "/ui/ThankYouFile" ? (
         <></>
       ) : (
         <div
-          className={
-            "futer flex justify-between items-center h-24  p-4 w-[100%] md:w-[870px] md:-mt-24 md:justify-around md:items-start md:ml-24"
-          }
+          className="futer flex justify-between items-center h-24  p-4 w-[100%] md:w-[1000px] md:-mt-24 md:justify-around md:items-start"
+          
         >
           <p
             onClick={() => BackFile()}
