@@ -46,7 +46,7 @@ const page = () => {
             <p>Phone Number</p>
             <input
               value={user.phoneNumber}
-              type="text"
+              type="number"
               placeholder="e.g.+1 234 567 890"
               className="border border-zinc-500 p-2 rounded-md w-[300px] md:w-[280%]"
               onChange={(e: any) => {

@@ -20,8 +20,8 @@ const host =usePathname();
         <QueryClientProvider client={queryClient}>
           <NavBar />
           <div>
-            <div className="body flex justify-center bg-slate-200 h-[573px] -mt-6 md:bg-white md:mt-0 md:h-[90vh] md:w-[100%] md:items-center">
-              <div className={`card bg-white w-[90%]  rounded-xl -mt-[19%] md:w-[60%] ${host === "/ui/PersonalInfo"?('h-[70%]'):host === "/ui/SelectYourPlan" ? ('h-[100%] md:h-[65%]'):host === "/ui/PickAddOns" ? ('h-[70%] md:h-[67%]'):host === "/ui/FinishingUp" ? ('h-[100%] md:h-[65%]'):host === "/ui/ThankYouFile" ? ('h-[100%] md:h-[70%]'):''}`}>
+            <div className={`body ${host === "/ui/ThankYouFile" ? ('h-[79vh] '):''} flex justify-center bg-slate-200 h-[570px] -mt-6 md:bg-white md:mt-0 md:h-[90vh] md:w-[100%] md:items-center`}>
+              <div className={`card bg-white w-[90%]  rounded-xl -mt-[19%] md:w-[60%] ${host === "/ui/PersonalInfo"?('h-[70%]'):host === "/ui/SelectYourPlan" ? ('h-[100%] md:h-[65%]'):host === "/ui/PickAddOns" ? ('h-[70%] md:h-[67%]'):host === "/ui/FinishingUp" ? ('h-[100%] md:h-[65%]'):host === "/ui/ThankYouFile" ? ('h-[70%] '):''}`}>
                 {children}
               </div>
             </div>

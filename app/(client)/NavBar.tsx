@@ -40,8 +40,9 @@ const NavBar = () => {
       number: 4,
       stepTitle: "SUMMARY",
       numberSteps: "STEP 4",
-      host: host === "/ui/FinishingUp",
+      host: host === "/ui/FinishingUp" || host === "/ui/ThankYouFile" ,
     },
+
   ];
 
   return (
@@ -62,7 +63,7 @@ const NavBar = () => {
             >
               <button
                 className={`buttonForNavigation ${
-                  step.host ? "text-purple-500 bg-white" : "text-white"
+                  step.host ? "text-purple-500 bg-white"  : "text-white"
                 } border border-white rounded-full h-9 w-9 font-bold text-center hover:cursor-default`}
               >
                 {step.number}
