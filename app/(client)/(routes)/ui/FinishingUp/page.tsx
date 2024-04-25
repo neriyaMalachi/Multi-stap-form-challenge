@@ -2,9 +2,12 @@
 import Link from "next/link";
 import React from "react";
 import { userStore } from "@/context/store";
+import axios from "axios";
 const page = () => {
   const user = userStore((state: any) => state.user);
-
+  axios.post("/api/users",{
+    user
+  });
   return (
     <>
       <div className="h-[30%]  flex flex-col p-6 md:p-0">

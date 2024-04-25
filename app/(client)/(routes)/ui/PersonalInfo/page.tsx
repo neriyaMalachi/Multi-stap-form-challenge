@@ -2,14 +2,11 @@
 import React, { useEffect } from "react";
 import "@/globals.css";
 import { userStore } from "@/context/store";
-import axios from "axios";
 
 const page = () => {
   const user = userStore((state: any) => state.user);
   const UpdateName = userStore((state: any) => state.updateName);
-  axios.post("http://localhost:3000/api/userRoutes/conectBackend", {
-    user,
-  });
+
 
   return (
     <>
