@@ -8,6 +8,8 @@ const page = () => {
   axios.post("/api/users",{
     user
   });
+
+  
   return (
     <>
       <div className="h-[30%]  flex flex-col p-6 md:p-0">

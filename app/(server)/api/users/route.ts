@@ -1,18 +1,27 @@
-import express from "express";
-import fs from 'fs'
-import { NextResponse } from "next/server";
-import path from "path";
-import connectMongodb from "../../mongodbConect";
 import User from "../../models/usersModel";
+import connectMongoDB from "@/libs/mongodb"
 
-export async function POST(req:Request,res:Response) {
-  const {user}=await req.json()
-  console.log(user);
+
+// export async function POST(req: Request, res: Response) {
+//   const { user } = await req.json();
+
+// const userData = await User.find()
+// res.json(userData)
+// }
+
+export async function GET(req: Request, res: any) {
+  await connectMongoDB();
+
   
-  await connectMongodb()
-  await User.create({user})
-  console.log("in server");
-  return NextResponse.json({success:true,message:"success !!!"},{status:201});
+
+const userData = await User.find({})
+console.log(userData);
+
+if(userData){
+  res.send(userData)
+console.log("successfull get users");
+
+}else{
+  res.status(404).send({ message: "Not Found" });
 }
-
-
+}
