@@ -4,11 +4,23 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { userStore } from "@/context/store";
 import { usePathname } from "next/navigation";
+import { PrismaClient } from "@prisma/client";
+import axios from "axios";
+
 const Footer = () => {
   const router = useRouter();
   const user = userStore((state: any) => state.user);
   const host = usePathname();
-
+  // Prisma testing
+  const prisma = new PrismaClient();
+  const getServerSideProps = async () => {
+    const contacts = await prisma.userSchema.findMany();
+    return {
+      props: {
+        initialContacts: contacts,
+      },
+    };
+  };
   const NextFile = () => {
     if (
       host === "/ui/PersonalInfo" &&
@@ -19,12 +31,16 @@ const Footer = () => {
       router.push("/ui/SelectYourPlan");
     else if (host === "/ui/SelectYourPlan" && user.subscriptionType)
       router.push("/ui/PickAddOns");
-    else if (host === "/ui/PickAddOns" && (user.OnlineService || user.largerStorage || user.CustomizableProfile)){
-
-     router.push("/ui/FinishingUp");
-    }
-     else if (host === "/ui/FinishingUp") 
-      router.push("/ui/ThankYouFile");
+    else if (
+      host === "/ui/PickAddOns" &&
+      (user.OnlineService || user.largerStorage || user.CustomizableProfile)
+    ) {
+      router.push("/ui/FinishingUp");
+      axios.post("/api/users", {
+        user,
+      });
+      getServerSideProps;
+    } else if (host === "/ui/FinishingUp") router.push("/ui/ThankYouFile");
 
     return 1;
   };
@@ -42,10 +58,7 @@ const Footer = () => {
       {host === "/ui/ThankYouFile" ? (
         <></>
       ) : (
-        <div
-          className="futer flex justify-between items-center h-24  p-4 w-[100%] md:w-[1000px] md:-mt-24 md:justify-around md:items-start"
-          
-        >
+        <div className="futer flex justify-between items-center h-24  p-4 w-[100%] md:w-[1000px] md:-mt-24 md:justify-around md:items-start">
           <p
             onClick={() => BackFile()}
             className={`${

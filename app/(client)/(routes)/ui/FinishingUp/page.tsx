@@ -2,26 +2,10 @@
 import Link from "next/link";
 import React from "react";
 import { userStore } from "@/context/store";
-import axios from "axios";
-import { PrismaClient } from "@prisma/client";
 const page = () => {
   const user = userStore((state: any) => state.user);
   console.log(user);
 
-  axios.post("/api/users", {
-    user,
-  });
-
-  // Prisma testing
-  const prisma = new PrismaClient();
-  const getServerSideProps = async () => {
-    const contacts = await prisma.contact.fineMany();
-    return {
-      props: {
-        initialContacts: contacts,
-      },
-    };
-  };
 
   return (
     <>
