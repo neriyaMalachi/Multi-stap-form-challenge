@@ -2,14 +2,11 @@
 import React, { useEffect } from "react";
 import "@/globals.css";
 import { userStore } from "@/context/store";
-import axios from "axios";
 
 const page = () => {
   const user = userStore((state: any) => state.user);
   const UpdateName = userStore((state: any) => state.updateName);
 
-  const {users}:any = axios.get("/api/users");
-  console.log({users});
   return (
     <>
       <div className="h-[30%]  flex flex-col p-6">

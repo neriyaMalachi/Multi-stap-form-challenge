@@ -1,27 +1,17 @@
-import User from "../../models/usersModel";
-import connectMongoDB from "@/libs/mongodb"
+import { PrismaClient } from "@prisma/client";
 
 
-// export async function POST(req: Request, res: Response) {
-//   const { user } = await req.json();
+const prisma = new PrismaClient()
+export async function POST(req: Request, res: Response) {
+  const { user } = await req.json();
 
-// const userData = await User.find()
-// res.json(userData)
-// }
+console.log(user);
 
-export async function GET(req: Request, res: any) {
-  await connectMongoDB();
+const saveContact:any = await prisma.contact.create({
+  data: user
+})
 
-  
-
-const userData = await User.find({})
-console.log(userData);
-
-if(userData){
-  res.send(userData)
-console.log("successfull get users");
-
-}else{
-  res.status(404).send({ message: "Not Found" });
+ res.json(saveContact);
 }
-}
+
+

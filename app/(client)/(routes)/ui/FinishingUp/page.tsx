@@ -3,13 +3,26 @@ import Link from "next/link";
 import React from "react";
 import { userStore } from "@/context/store";
 import axios from "axios";
+import { PrismaClient } from "@prisma/client";
 const page = () => {
   const user = userStore((state: any) => state.user);
-  axios.post("/api/users",{
-    user
+  console.log(user);
+
+  axios.post("/api/users", {
+    user,
   });
 
-  
+  // Prisma testing
+  const prisma = new PrismaClient();
+  const getServerSideProps = async () => {
+    const contacts = await prisma.contact.fineMany();
+    return {
+      props: {
+        initialContacts: contacts,
+      },
+    };
+  };
+
   return (
     <>
       <div className="h-[30%]  flex flex-col p-6 md:p-0">
@@ -22,7 +35,10 @@ const page = () => {
         <div className="flex flex-col items-center w-[85%] h-44 bg-slate-100 p-3 rounded-md md:w-[100%] md:justify-evenly divide-y   hover:border-blue-600">
           <div className="flex justify-between  w-[100%]  ml-3 md:m-0">
             <div className="flex flex-col">
-              <h1 className="font-Ubuntu-Bold">{user.subscriptionType}  {user.yeare ? <>(Yearly)</> : <>(Monthly)</>}</h1>
+              <h1 className="font-Ubuntu-Bold">
+                {user.subscriptionType}{" "}
+                {user.yeare ? <>(Yearly)</> : <>(Monthly)</>}
+              </h1>
               <Link
                 href={"/ui/SelectYourPlan"}
                 className="text-blue-600 border-b border-blue-600 w-14"
@@ -58,7 +74,7 @@ const page = () => {
             ) : (
               <></>
             )}
-             {user.CustomizableProfile ? (
+            {user.CustomizableProfile ? (
               <div className="flex w-[100%] justify-between md:w-[100%] md:mt-3">
                 <h1 className="font-light">Customizable profile</h1>
                 <p>
@@ -73,8 +89,10 @@ const page = () => {
         </div>
 
         <div className="TotalPrice flex justify-between w-[75%] md:w-[100%] md:p-4">
-          <p>Total {user.yeare?<>(per year)</>:<>(per month)</>}</p>
-          <p className="text-blue-800 font-Ubuntu-Bold">${user.Price}/ {user.yeare ? <>yr</> : <>mo</>}</p>
+          <p>Total {user.yeare ? <>(per year)</> : <>(per month)</>}</p>
+          <p className="text-blue-800 font-Ubuntu-Bold">
+            ${user.Price}/ {user.yeare ? <>yr</> : <>mo</>}
+          </p>
         </div>
       </div>
     </>
