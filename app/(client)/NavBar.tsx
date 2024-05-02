@@ -2,21 +2,10 @@
 import React, { useEffect, useState } from "react";
 import "@/globals.css";
 import { usePathname } from "next/navigation";
+import { useMediaQuery } from "react-responsive";
 
 const NavBar = () => {
   const host = usePathname();
-  const [windowS, setWindowS] = useState<number>(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowS(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   const steps = [
     {
       number: 1,
@@ -40,10 +29,12 @@ const NavBar = () => {
       number: 4,
       stepTitle: "SUMMARY",
       numberSteps: "STEP 4",
-      host: host === "/ui/FinishingUp" || host === "/ui/ThankYouFile" ,
+      host: host === "/ui/FinishingUp" || host === "/ui/ThankYouFile",
     },
-
   ];
+  const windowS = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
 
   return (
     <div
@@ -55,7 +46,7 @@ const NavBar = () => {
         className="flex justify-evenly -mt-20 w-[50%]
        md:flex-col md:w-72 md:h-[50%] md:items-center md:mt-3 "
       >
-        {steps.map((step, index) => {
+        {steps.map((step) => {
           return (
             <div
               key={step.number}
@@ -63,19 +54,17 @@ const NavBar = () => {
             >
               <button
                 className={`buttonForNavigation ${
-                  step.host ? "text-purple-500 bg-white"  : "text-white"
+                  step.host ? "text-purple-500 bg-white" : "text-white"
                 } border border-white rounded-full h-9 w-9 font-bold text-center hover:cursor-default`}
               >
                 {step.number}
               </button>
-              {windowS >= 1000 ? (
+              {windowS && (
                 <div className="text-white w-28">
-                  <p>{step.numberSteps}</p>
                   <h1 className="font-Ubuntu-Bold ">{step.stepTitle}</h1>
+                  <p>{step.numberSteps}</p>
                 </div>
-              ) : (
-                <></>
-              )}
+              ) }
             </div>
           );
         })}

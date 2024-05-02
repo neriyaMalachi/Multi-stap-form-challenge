@@ -4,8 +4,6 @@ import React from "react";
 import { userStore } from "@/context/store";
 const page = () => {
   const user = userStore((state: any) => state.user);
-  console.log(user);
-
 
   return (
     <>
