@@ -36,11 +36,13 @@ const Footer = () => {
       (user.OnlineService || user.largerStorage || user.CustomizableProfile)
     ) {
       router.push("/ui/FinishingUp");
+    } else if (host === "/ui/FinishingUp") {
       axios.post("/api/users", {
         user,
       });
       getServerSideProps;
-    } else if (host === "/ui/FinishingUp") router.push("/ui/ThankYouFile");
+      router.push("/ui/ThankYouFile");
+    }
 
     return 1;
   };
